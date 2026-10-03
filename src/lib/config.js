@@ -1,4 +1,3 @@
-
 const MAPID_KEY = import.meta.env.VITE_MAPID_KEY;
 
 export const basemaps = {
