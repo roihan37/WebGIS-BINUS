@@ -6,6 +6,20 @@ The slow GeoJSON demo is not in this folder. That stays on the projector.
 
 You need Node 18 or newer, and Python 3. The tile file `data_mvt/suppliers.mbtiles` comes with the clone.
 
+### Koneksi cadangan API: curl
+
+Sediakan `curl` pada komputer yang menjalankan server Python agar koneksi cadangan API dapat digunakan. Pengguna yang hanya membuka web di browser tidak perlu memasangnya.
+
+Cek ketersediaannya di terminal:
+
+```bash
+curl --version
+```
+
+Jika informasi versi muncul, `curl` sudah tersedia. Jika perintah tidak ditemukan, instal `curl` dan pastikan dapat dijalankan dari terminal tempat server Python dimulai.
+
+Backend mencoba koneksi API melalui Python terlebih dahulu. Pada adapter pencarian, fasilitas, dan rute, jika negosiasi TLS gagal, backend mencoba kembali melalui `curl`. Verifikasi sertifikat HTTPS tetap aktif; kegagalan verifikasi sertifikat tidak dilewati. Mekanisme ini tidak diperlukan untuk membaca tile MVT lokal.
+
 ## Clone
 
 ```bash
@@ -43,7 +57,7 @@ npm run dev
 Open the local URL Vite prints (usually `http://127.0.0.1:5173/`).
 
 1. Switch Street, Light, and Satellite.
-2. Click **Use MVT**.
+2. Open the **Peta** tab and click **Tampilkan data supplier**. After activation, the button reads **Layer supplier diaktifkan**; this indicates the layer is enabled, not confirmation that all tiles have loaded.
 3. Pan the map. DevTools → Network shows small `.mvt` requests.
 4. Click a green point. Read supplier, plot area, and region.
 
